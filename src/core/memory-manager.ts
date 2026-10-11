@@ -21,7 +21,7 @@ export class MemoryManager {
             const data = await fs.readJson(filePath);
             return KnowledgeGraphSchema.parse(data);
         } catch (error) {
-            throw new Error(`Failed to read memory file at ${filePath}: ${error instanceof Error ? error.message : String(error)}`);
+            throw new Error(`Failed to read memory file at ${filePath}: ${error instanceof Error ? error.message : String(error)}`, { cause: error });
         }
     }
 
@@ -36,7 +36,7 @@ export class MemoryManager {
         try {
             await this.atomicWriteJson(filePath, normalizedGraph);
         } catch (error) {
-            throw new Error(`Failed to write memory file at ${filePath}: ${error instanceof Error ? error.message : String(error)}`);
+            throw new Error(`Failed to write memory file at ${filePath}: ${error instanceof Error ? error.message : String(error)}`, { cause: error });
         }
     }
 
@@ -50,7 +50,7 @@ export class MemoryManager {
             const data = await fs.readJson(filePath);
             return ProjectContextSchema.parse(data);
         } catch (error) {
-            throw new Error(`Failed to read context file at ${filePath}: ${error instanceof Error ? error.message : String(error)}`);
+            throw new Error(`Failed to read context file at ${filePath}: ${error instanceof Error ? error.message : String(error)}`, { cause: error });
         }
     }
 
@@ -61,7 +61,7 @@ export class MemoryManager {
             context.updatedAt = new Date().toISOString();
             await this.atomicWriteJson(filePath, context);
         } catch (error) {
-            throw new Error(`Failed to write context file at ${filePath}: ${error instanceof Error ? error.message : String(error)}`);
+            throw new Error(`Failed to write context file at ${filePath}: ${error instanceof Error ? error.message : String(error)}`, { cause: error });
         }
     }
 
