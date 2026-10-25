@@ -133,7 +133,7 @@ n2n-memory runs as a stdio MCP server with no CLI subcommands — start it with 
 
 ## 📄 License
 
-This project is licensed under the [MIT License](./LICENSE).
+This project is licensed under the [Apache-2.0 License](./LICENSE).
 
 ---
 

@@ -188,7 +188,7 @@ n2n-memory 为 AI 编程工具提供一个可通过 MCP 读写的项目本地知
 - **[llms.txt](../llms.txt)**: 面向 AI 编程代理和回答引擎的简短项目摘要。
 
 ## 📄 许可证
-本项目采用 [MIT 许可证](../LICENSE)。
+本项目采用 [Apache-2.0 许可证](../LICENSE)。
 
 ---
 

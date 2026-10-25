@@ -78,6 +78,6 @@ npx -y n2n-memory
 
 - npm: `n2n-memory`
 - GitHub: `https://github.com/n2ns/n2n-memory`
-- License: MIT
+- License: Apache-2.0
 
 Built by N2NS Lab, Datafrog's open-source lab for practical AI developer tools.
