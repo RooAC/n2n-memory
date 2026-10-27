@@ -42,13 +42,24 @@ export function jaccardSimilarity(a: string, b: string): number {
 }
 
 /**
+ * Check if `haystack` contains `needle` without splitting a Latin word or number,
+ * so that "port 80" is not treated as contained in "port 8080".
+ * Scripts written without spaces (e.g. Chinese) keep plain substring matching.
+ */
+function containsWholeWords(haystack: string, needle: string): boolean {
+  const escaped = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?<![\\p{Script=Latin}\\p{N}])${escaped}(?![\\p{Script=Latin}\\p{N}])`, 'u').test(haystack);
+}
+
+/**
  * Check if string A contains string B (or vice versa) after normalization.
+ * Matches only at word boundaries.
  * Useful for detecting "version 2.4.1" vs "current version is 2.4.1".
  */
 export function containsSimilar(a: string, b: string): boolean {
   const normA = normalize(a);
   const normB = normalize(b);
-  return normA.includes(normB) || normB.includes(normA);
+  return containsWholeWords(normA, normB) || containsWholeWords(normB, normA);
 }
 
 /**

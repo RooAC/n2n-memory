@@ -67,6 +67,16 @@ describe("Similarity Utils", () => {
         it("should return false for unrelated strings", () => {
             expect(containsSimilar("foo", "bar")).to.be.false;
         });
+
+        it("should only match at word boundaries", () => {
+            expect(containsSimilar("port 80", "port 8080")).to.be.false;
+            expect(containsSimilar("node 1.2", "node 1.20")).to.be.false;
+            expect(containsSimilar("cat", "uses a concatenation step")).to.be.false;
+        });
+
+        it("should still match inside text written without spaces", () => {
+            expect(containsSimilar("使用redis", "使用redis缓存")).to.be.true;
+        });
     });
 
     describe("isSimilarObservation", () => {
@@ -130,6 +140,14 @@ describe("Similarity Utils", () => {
 
         it("should handle empty array", () => {
             expect(deduplicateObservations([])).to.deep.equal([]);
+        });
+
+        it("should keep observations that differ only by digits or letters inside a word", () => {
+            const obs = [
+                "API listens on port 80",
+                "API listens on port 8080"
+            ];
+            expect(deduplicateObservations(obs)).to.deep.equal(obs);
         });
     });
 
