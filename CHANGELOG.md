@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Normal reads now refresh cached graph/context snapshots when the underlying `.mcp` files change.
 - Existing but unreadable `memory.json` or `context.json` files now raise data integrity errors instead of being treated as empty state.
 - `n2n_create_relations` now rejects relations that reference missing entities.
+- Observation deduplication no longer merges observations that differ only inside a word or number (e.g. `port 80` vs `port 8080`); containment now matches whole words only.
 - `n2n_export_markdown` now rejects absolute output paths and relative paths that escape the project root.
 - `projectPath` validation now rejects relative paths before resolving them.
 - Production and development dependency audits now pass with zero vulnerabilities.
